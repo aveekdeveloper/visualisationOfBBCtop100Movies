@@ -1,5 +1,7 @@
 #Readme
-Description of folder contents.
+In this project we have tried to come up with visualisation for Top 100 movies from the BBC 2016 database.
+
+This file also contains description of folder contents.
 This project has three parts and hence three views.
 
 ###index.html###
