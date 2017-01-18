@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+		<link href='http://fonts.useso.com/css?family=Raleway:200,500,700,800' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+		
+		<link rel="stylesheet" href="http://libs.useso.com/js/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!-- Internal CSS -->
+	    <link rel="stylesheet" href="css/demo.css">
+	    <!-- injector:css -->
+	    <link rel="stylesheet" href="css/custombox.min.css">
+		<meta charset="utf-8">
+
+		<title>Top 100</title>
+	</head>
+	<body>
+		<h1>Top 100</h1>
+		<div id="header">
+			<div class="hname">
+				Name
+				<div class="arrow-up" onclick="sortTitle(1)"></div>
+				<div class="arrow-down" onclick="sortTitle(-1)"></div>
+			</div>
+
+			<div class="hyear">
+				Year
+				<div class="arrow-up" onclick="sortYear(1)"></div>
+				<div class="arrow-down" onclick="sortYear(-1)"></div>
+			</div>
+			<div class="hdirector">
+				Director
+				<div class="arrow-up" onclick="sortDirector(1)"></div>
+				<div class="arrow-down" onclick="sortDirector(-1)"></div>
+			</div>
+			<div class="hscore">
+				Score
+				<div class="arrow-up" onclick="sortScore(1)"></div>
+				<div class="arrow-down" onclick="sortScore(-1)"></div>
+			</div>
+			<div class="hvotes">
+				Votes
+      		 	<div class="arrow-up" onclick="sortSelectedRanks(1)"></div>
+				<div class="arrow-down" onclick="sortSelectedRanks(-1)"></div>
+				<select id="selectrank" class="rankselect" multiple="multiple" size="10">
+				  <option value="0">Rank 1 votes</option>
+				  <option value="1">Rank 2 votes</option>
+				  <option value="2">Rank 3 votes</option>
+				  <option value="3">Rank 4 votes</option>
+				  <option value="4">Rank 5 votes</option>
+				  <option value="5">Rank 6 votes</option>
+				  <option value="6">Rank 7 votes</option>
+				  <option value="7">Rank 8 votes</option>
+				  <option value="8">Rank 9 votes</option>
+				  <option value="9">Rank 10 votes</option>
+				</select>
+
+		</div>
+
+			</div>
+					
+
+
+		<div id='top'></div>
+        <div id="modal" class="modal-demo">
+		<button type="button" class="close" onclick="Custombox.close();">
+		    <span>&times;</span><span class="sr-only">Close</span>
+		</button>
+		<h4 class="title" id="mv-title">movie details</h4>
+		<div class="text">
+				<div class="row clearfix">
+					<div class="col-md-8 column">
+										<div class="form-group">
+						<label for="firstname" class="col-sm-3 control-label">imdbRating</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-imdbRating" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="lastname" class="col-sm-3 control-label">imdbVotes</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-imdbVotes" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="lastname" class="col-sm-3 control-label">Country</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-country" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="lastname" class="col-sm-3 control-label">Director</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-director" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="lastname" class="col-sm-3 control-label">Runtime</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-runtime" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="lastname" class="col-sm-3 control-label">Type</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mv-type" readonly>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-4 column">
+										<div class="form-group">
+						<div class="col-md-12">
+							<img src="" id="mv-poster">
+						</div>
+					</div>
+					</div>
+					<div class="col-md-12 column" style="margin-top:10px;">
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Actors</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-actors" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Awards</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-awards" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Genre</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-genre" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Language</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-language" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Metascore</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-metascore" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Rated</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-rated" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Released</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-released" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-2 control-label">Writer</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="mv-writer" readonly>
+						</div>
+					</div>
+										<div class="form-group">
+						<label for="firstname" class="col-lg-12 control-label">Introduction</label>
+						<div class="col-md-12">
+							<textarea type="text" class="form-control" id="mv-plot" readonly></textarea> 
+						</div>
+					</div>
+					</div>
+				</div>
+		</div>
+		</div>
+		<script src="http://libs.useso.com/js/jquery/1.11.0/jquery.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- Internal JavaScript -->
+	    <!-- injector:js -->
+	    <script src="js/custombox.min.js"></script>
+	    <script src="js/legacy.min.js"></script>
+	    <!-- endinjector -->
+	    <script src="js/demo.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+		  $("button").click(function(){
+		  $("p").toggle();
+		  });
+		});
+		</script>	
+	<script>
+//		<DIV style="cursor:hand" onclick="isHidden('div1')"><b>pointer:</b></DIV>
+//  		<DIV id="div1" style="display:none">contenu</DIV>
+
+
+//	$('.metaheader').click(myFunction());
+		var metadata = {};
+
+//The scale will be used to compute the width of the graph
+//var x = d3.scaleLinear()
+//    .domain([0, 20])
+//    .range([2, 100]);
+//    
+//    
+		d3.tsv("https://bitbucket.org/aveekmukh90/2016-bbc-top100/raw/3bfd9deb4323ab80cd6c46e1beda38bde8788e07/data/metadata.tsv", function(error, data) {
+			if(error) throw error;
+			data.forEach(function(d) {
+				metadata[d.imdbID] = d;
+			});
+		});
+
+		var ol = d3.select("body").selectAll("#top")
+		var rankColor = ['#FBB735','#E98931','#EB403B','#B32E37','#6C2A6A','#5C4399','#1F5EA8','#227FB0','#2AB0C5','#39C0B3']
+
+		d3.tsv("https://bitbucket.org/aveekmukh90/2016-bbc-top100/raw/3bfd9deb4323ab80cd6c46e1beda38bde8788e07/data/movies.tsv", function(error, data) {
+			if(error) throw error;
+
+			data.forEach(function(d) {
+				var ranks = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var score = 0;
+				for(var i=0; i<177; i++) {
+					rank = d['c'+d3.format('03')(i+1)];
+					if(rank > 0) {
+						score += 11 - rank;
+						ranks[rank-1] += 1;
+					}
+				}
+				d.score = score;
+				d.ranks = ranks;
+				try      { d.poster = metadata[d['#imdbid']].Poster; }
+				catch(e) { d.poster = 'http://www.ifn-modern.com/skin/frontend/fortis/default/images/no-image.png'; }
+			});
+
+			var li = ol.selectAll('.movie')
+				.data(data
+					.sort(function(a, b) { return b.score - a.score; })
+					.filter(function(d) { return d.score > 20; })
+				)
+				.enter().append('div').attr('class', 'list');
+				
+
+			li.append('img')
+				.attr('class', 'poster')
+				.style("width", "50px")
+				.attr('src', function(d) { return d.poster; });
+
+			li.append('div')
+				.attr('class', 'title')
+				.text(function(d) { return d.title; });
+
+			li.append('div')
+				.attr('class', 'year')
+				.text(function(d) { return d.year; });
+			li.append('div')
+				.attr('class', 'director')
+				.text(function(d) { return d.director; });
+
+			li.append('div')
+				.attr('class', 'score')
+				.text(function(d) { return d.score; });
+		  
+
+			li.append('div')
+				.attr('class', 'barcontainer');
+
+			li.select('div.barcontainer').selectAll('.bar')
+				.data(function(d) { return d.ranks; })
+				.enter().append('div')
+					.attr('class', 'bar')
+					.style('background-color',function(d,i){return rankColor[i]})
+					.style('width', function(d) { return 6.5*d+1 + 'px'; })
+					.text(function(d) { if(d!=0)return d; });
+
+			li.append('div');
+			li.append('a')
+					.attr('class','metaheader')
+					.attr('onclick', function(d) {return 'openDetail("'+d['#imdbid']+'")'; })
+					.text("Additional details +");
+			li.append('div')
+					.attr('class','metadiv')
+					.text(function(d) { return d.metadiv; });
+
+
+			var metadiv = li.selectAll('div.metadata');
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Country: '+ (d.metadata.Country)} )
+
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Genre: '+ d.metadata.Genre} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Language: '+ d.metadata.Language} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'IMDB rating: '+ d.metadata.imdbRating} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Rated: '+ d.metadata.Rated} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Actors: '+ d.metadata.Actors} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Awards: '+ d.metadata.Awards} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Runtime: '+ d.metadata.Runtime} )
+
+			metadiv.append('span').text(
+				function(d){
+					if(typeof d.metadata == 'undefined'){return;}
+					return 'Plot: '+ d.metadata.Plot} )
+
+
+		});
+
+
+		function sortYear(order){
+			li = ol.selectAll('div.list')
+			.sort(function(a,b){if(order ==1){
+					return d3.ascending(a.year,b.year);
+				}else{
+					return d3.descending(a.year,b.year);
+				}
+				})
+		};
+
+		function sortScore(order){
+			li = ol.selectAll('div.list')
+			.sort(function(a,b){if(order ==1){
+					return d3.ascending(a.score,b.score);
+				}else{
+					return d3.descending(a.score,b.score);
+				}
+				})
+		};
+
+		function sortTitle(order){
+			li = ol.selectAll('div.list')
+			.sort(function(a,b){if(order ==1){
+					return d3.ascending(a.title,b.title);
+				}else{
+					return d3.descending(a.title,b.title);
+				}
+				})
+		};
+
+		function sortRank(order,ranks){
+			showRank([0,1,2,3,4,5,6,7,8,9]);
+			hideRanksExcept(ranks);
+			li = ol.selectAll('div.list')
+			.sort(function(a,b){
+				ascore = 0;
+				bscore = 0;
+				ranks.forEach(function(d){
+					ascore += a.ranks[d];
+					bscore += b.ranks[d];
+				})
+				if(order == 1){
+					return d3.ascending(ascore,bscore);
+				}else{
+					return d3.descending(ascore,bscore);
+				}
+			});
+
+		};
+
+		function sortSelectedRanks(order){
+			var el = document.getElementsByTagName('select')[0];
+			var ranks = getSelectValues(el);
+
+			if(ranks.length ==0){
+		    showRank([0,1,2,3,4,5,6,7,8,9]);
+		    alert("Please select ranks!"); return;}
+			console.log(ranks);
+		  sortRank(order, ranks);
+		}
+
+		function getSelectValues(select) {
+		  var result = [];
+		  var options = select && select.options;
+		  var opt;
+
+		  for (var i=0, iLen=options.length; i<iLen; i++) {
+		    opt = options[i];
+
+		    if (opt.selected) {
+		      result.push(parseInt(opt.value));
+		    }
+		  }
+		  return result;
+		}
+
+		function hideRanksExcept(r){
+			console.log("Trying to hide"+r.toString());
+			ol.selectAll('div.list')
+			.selectAll('.bar')
+			.filter(function(d,i)
+				{
+					if(r.indexOf(i)==-1)return 1;
+				})
+			.style("display","none")
+		};
+		function showRank(r){
+			ol.selectAll('div.list')
+			.selectAll('.bar')
+			.filter(function(d,i)
+				{
+					if(r.indexOf(i)!=-1)return 1;
+				})
+			.style("display","inline-block")
+		};	
+		function sortDirector(order){
+			li = ol.selectAll('div.list')
+			.sort(function(a,b){if(order ==1){
+					return d3.ascending(a.director,b.director);
+				}else{
+					return d3.descending(a.director,b.director);
+				}
+				})
+		};
+
+		function openDetail(imdbID){
+			d3.tsv("https://bitbucket.org/aveekmukh90/2016-bbc-top100/raw/3bfd9deb4323ab80cd6c46e1beda38bde8788e07/data/metadata.tsv", function(error, data) {
+					if(error) throw error;
+					data.forEach(function(d) {
+						var random = Math.round(Math.random()*18);
+						var transArr = 	['fadein', 'slide', 'newspaper', 'fall', 'sidefall', 'blur', 'flip', 'sign', 'superscaled', 'slit', 'rotate', 'letmein', 'slip', 'corner', 'slidetogether', 'scale', 'door', 'push', 'contentscale'];
+						if(imdbID==d.imdbID){
+							console.log(d);
+							$('#mv-title').text(d['#title']);
+							$('#mv-actors').val(d.Actors);
+							$('#mv-awards').val(d.Awards);
+							$('#mv-country').val(d.Country);
+							$('#mv-director').val(d.Director);
+							$('#mv-genre').val(d.Genre);
+							$('#mv-language').val(d.Language);
+							$('#mv-metascore').val(d.Metascore);
+							$('#mv-rated').val(d.Rated);
+							$('#mv-released').val(d.Released);
+							$('#mv-runtime').val(d.Runtime);
+							$('#mv-type').val(d.Type);
+							$('#mv-writer').val(d.Writer);
+							$('#mv-imdbRating').val(d.imdbRating);
+							$('#mv-imdbVotes').val(d.imdbVotes);
+							$('#mv-plot').text(d.Plot);
+							$('#mv-poster').attr('src',d.Poster);
+				            Custombox.open({
+				                target: '#modal',
+				                effect: transArr[random] // can be replaced with ['fadein', 'slide', 'newspaper', 'fall', 'sidefall', 'blur', 'flip', 'sign', 'superscaled', 'slit', 'rotate', 'letmein', 'slip', 'corner', 'slidetogether', 'scale', 'door', 'push', 'contentscale']
+			            	});
+						}
+					});
+			});
+		}
+
+
+
+
+	</script>
+	</body>
+</html>
+
+	<style type="text/css" >
+		body { margin: 40px 60px; font-family: sans-serif; }
+		div.list:nth-of-type(2n+1) {background-color: aliceblue}
+
+		#header{font-size: 24px;width:1150px;border-bottom: 0.5px solid #696969; margin-bottom: 8px; padding-bottom: 5px}
+		div.hname{margin-left: -30px; display: inline-block;}
+		div.hyear{margin-left: 60px; display: inline-block;}
+		div.hscore{margin-left: 50px; display: inline-block;}
+		div.hdirector{margin-left: 60px; display: inline-block;}
+		div.hvotes{margin-left: 50px; display: inline-block;}
+		.rankselect{
+			font-size: 10px;
+		}
+		.arrow-up {
+		  width: 0;
+		  height: 0;
+		  border-left: 8px solid transparent;
+		  border-right: 8px solid transparent;
+		  border-bottom: 8px solid green;
+			display: inline-block;
+		}
+
+		.arrow-down {
+		  width: 0;
+		  height: 0;
+		  border-left: 8px solid transparent;
+		  border-right: 8px solid transparent;
+		  border-top: 8px solid red;
+			display: inline-block;
+		}
+
+
+		#top {width: 1150px; }
+		div.list { margin-bottom: 0px;padding-left: 10px}
+		img.poster { width: 50px; margin: -30px 10px; }
+		div.bar { height: 15px; margin-right: 0px; float:left; margin-top:50px; color: white;font-size: 14px;text-align: center;}
+		div.title { margin: 10px,40px;  width: 200px; display: inline-block;text-align: top;  }
+		div.year{margin: 40px; display: inline-block;}
+	        div.director{margin-left: 100px; width: 100px; display: inline-block;}
+		div.score{margin: 40px; display: inline-block;margin-left: 100px;margin-right: 120px; width: 20px;}
+		div.barcontainer{margin-left: -30px; display: inline-block;}
+		div.metadata{display: none;}
+		div.metadata span{display:block;}
+
+		.metaheader{
+			cursor:pointer;
+		}
+
+	    .tooltip{  
+		    position: absolute;  
+		    width: 120;  
+		    height: auto;  
+		    font-family: simsun;  
+		    font-size: 14px;  
+		    text-align: center;  
+		    border-style: solid;   
+		    border-width: 1px;  
+		    background-color: white;  
+		    border-radius: 5px;  
+		}  
+
+	</style>
+
+
