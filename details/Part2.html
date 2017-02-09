@@ -6,7 +6,7 @@
 		<link href='http://fonts.useso.com/css?family=Raleway:200,500,700,800' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/default.css">
-		
+
 		<link rel="stylesheet" href="http://libs.useso.com/js/bootstrap/3.2.0/css/bootstrap.min.css">
 		<!-- Internal CSS -->
 	    <link rel="stylesheet" href="css/demo.css">
@@ -60,7 +60,7 @@
 		</div>
 
 			</div>
-					
+
 
 
 		<div id='top'></div>
@@ -168,7 +168,7 @@
 										<div class="form-group">
 						<label for="firstname" class="col-lg-12 control-label">Introduction</label>
 						<div class="col-md-12">
-							<textarea type="text" class="form-control" id="mv-plot" readonly></textarea> 
+							<textarea type="text" class="form-control" id="mv-plot" readonly></textarea>
 						</div>
 					</div>
 					</div>
@@ -176,7 +176,8 @@
 		</div>
 		</div>
 		<script src="http://libs.useso.com/js/jquery/1.11.0/jquery.min.js"></script>
-		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script type="text/javascript" src="d3.js"></script>
+		<!--<script src="http://d3js.org/d3.v3.min.js"></script> -->
 		<script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- Internal JavaScript -->
 	    <!-- injector:js -->
@@ -190,7 +191,7 @@
 		  $("p").toggle();
 		  });
 		});
-		</script>	
+		</script>
 	<script>
 //		<DIV style="cursor:hand" onclick="isHidden('div1')"><b>pointer:</b></DIV>
 //  		<DIV id="div1" style="display:none">contenu</DIV>
@@ -203,8 +204,8 @@
 //var x = d3.scaleLinear()
 //    .domain([0, 20])
 //    .range([2, 100]);
-//    
-//    
+//
+//
 		d3.tsv("https://bitbucket.org/aveekmukh90/2016-bbc-top100/raw/3bfd9deb4323ab80cd6c46e1beda38bde8788e07/data/metadata.tsv", function(error, data) {
 			if(error) throw error;
 			data.forEach(function(d) {
@@ -240,7 +241,7 @@
 					.filter(function(d) { return d.score > 20; })
 				)
 				.enter().append('div').attr('class', 'list');
-				
+
 
 			li.append('img')
 				.attr('class', 'poster')
@@ -261,7 +262,7 @@
 			li.append('div')
 				.attr('class', 'score')
 				.text(function(d) { return d.score; });
-		  
+
 
 			li.append('div')
 				.attr('class', 'barcontainer');
@@ -430,7 +431,7 @@
 					if(r.indexOf(i)!=-1)return 1;
 				})
 			.style("display","inline-block")
-		};	
+		};
 		function sortDirector(order){
 			li = ol.selectAll('div.list')
 			.sort(function(a,b){if(order ==1){
@@ -530,19 +531,17 @@
 			cursor:pointer;
 		}
 
-	    .tooltip{  
-		    position: absolute;  
-		    width: 120;  
-		    height: auto;  
-		    font-family: simsun;  
-		    font-size: 14px;  
-		    text-align: center;  
-		    border-style: solid;   
-		    border-width: 1px;  
-		    background-color: white;  
-		    border-radius: 5px;  
-		}  
+	    .tooltip{
+		    position: absolute;
+		    width: 120;
+		    height: auto;
+		    font-family: simsun;
+		    font-size: 14px;
+		    text-align: center;
+		    border-style: solid;
+		    border-width: 1px;
+		    background-color: white;
+		    border-radius: 5px;
+		}
 
 	</style>
-
-
