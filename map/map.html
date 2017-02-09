@@ -8,12 +8,13 @@ path {
 }
 </style>
 <body>
-<div> 
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v0.min.js"></script>
+<div>
+
+<script type="text/javascript" src="d3.js"></script>
+<script type="text/javascript" src="topojson.js"></script>
 <script>
-var div = d3.select("body").append("div")	
-    .attr("class", "names")				
+var div = d3.select("body").append("div")
+    .attr("class", "names")
 var width = 1120,
     height = 640;
 
@@ -57,10 +58,10 @@ else return 1
 var cities={};
  d3.csv("cities.csv", function(error, data) {
        cities=data;
-       
+
        //c=d["country"]//add country name to the path
        //console.log("this is a param "+c);
-       
+
     });
 
 // load and display the World
@@ -84,17 +85,17 @@ d3.json("world-110m2.json", function(error, topology) {
            .attr("r", function(d){return radius(d.country)}) //d contains every row of the data
            .style("fill", "rgba(255,0,0,0.4)");
            });
-      
+
 //});
 
 //console.log("radius "+radius(" UK"));
 // zoom and pan
 var zoom = d3.behavior.zoom()
     .on("zoom",function() {
-        g.attr("transform","translate("+ 
+        g.attr("transform","translate("+
             d3.event.translate.join(",")+")scale("+d3.event.scale+")");
-        g.selectAll("path")  
-            .attr("d", path.projection(projection)); 
+        g.selectAll("path")
+            .attr("d", path.projection(projection));
   });
 
 //div.html(country_data);
